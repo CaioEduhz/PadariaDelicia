@@ -165,7 +165,8 @@ Dentre os principais processos da empresa, mapeamos aqueles que são mais releva
 **5\. Dicionário de Dados Conceitual (Preliminar)**  
 \*(vale 10% — Dimensão Procedimental \- Segue o modelo do arquivo 02-03g\_Exemplo\_Dicionario\_Dados.pdf)\*
 
-Confira o dicionário de dados por ***aqui***
+Confira o [Dicionário de Dados](Dicionario/index.html)
+
 
 **6\. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)(marcado)**  
 \*(vale 7,5% na dimensão conceitual)\*
