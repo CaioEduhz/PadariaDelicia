@@ -22,15 +22,15 @@ A escolha da *Padaria Délicia II* como objeto de estudo justifica-se pela proxi
 A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail [pyoner@ig.com.br](mailto:pyoner@ig.com.br).   
 Além disso, há também um registro anexado abaixo da reunião de levantamento de dados feita com o gerente da empresa. 
 
-![][image1]  
-*Print de reunião com um dos donos da padaria*
+
+[Print de reunião com um dos donos da padaria](img/PrintReuniao.jpeg)
 
 **2\. Processos de Negócio**  
 \*(vale 10% — Dimensão Procedimental)\*
 
 Dentre os principais processos da empresa, mapeamos aqueles que são mais relevantes para o desenvolvimento de um sistema efetivo: **Cadastro e controle de cliente** (hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar.); **Controle de caixa** (fechamento e conferência de caixa dependem quase inteiramente de controle verbal, com uso pontual de fichas de papel.); **Controle de estoque** (movimentação de produtos é registrada de forma totalmente manual, sem sistema de apoio.); **Produção e compras (fluxo de mercadoria)** (entrada de insumos, produção diária e disponibilização dos produtos para venda.); e **Vendas, atendimento e entregas:** (atendimento no balcão e pedidos por delivery (cerca de 50 por dia), com integração escalável ao WhatsApp.)
 
-![][image2]
+[Fluxo de Processos](img/Fluxograma.png)
 
 
 **3\. Requisitos do Sistema**  
