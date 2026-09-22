@@ -23,7 +23,7 @@ A existência da organização pode ser comprovada pelo cadastro empresarial ati
 Além disso, há também um registro anexado abaixo da reunião de levantamento de dados feita com o gerente da empresa. 
 
 
-[Print de reunião com um dos donos da padaria](img/PrintReuniao.jpeg)
+[Print de reunião com um dos donos da padaria](img/Reuniao.jpg)
 
 **2\. Processos de Negócio**  
 \*(vale 10% — Dimensão Procedimental)\*
