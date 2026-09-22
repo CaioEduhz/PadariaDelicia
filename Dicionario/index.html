@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dicionário de Dados — Padaria Délicia II</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/Dicionario/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">Délicia II</span>
+    </div>
+    <p class="brand-sub">DICIONÁRIO DE DADOS · MODELO CONCEITUAL</p>
+    <input type="text" class="sidebar-search" id="sidebar-search" placeholder="Buscar entidade…">
+    <nav>
+      <div class="sidebar-group-label">Visão geral</div>
+      <ul>
+        <li><a href="#modelo-conceitual">Modelo conceitual</a></li>
+        <li><a href="#fluxo-dados">Fluxo de dados</a></li>
+        <li><a href="#convencoes">Convenções adotadas</a></li>
+      </ul>
+      <div class="sidebar-group-label">Entidades</div>
+      <ul class="entities" id="entity-nav">
+        <li><a href="#categoria" data-search="categoria"><span class="nav-num">5.4</span>CATEGORIA</a></li>
+<li><a href="#produto" data-search="produto"><span class="nav-num">5.5</span>PRODUTO</a></li>
+<li><a href="#materia-prima" data-search="materia_prima"><span class="nav-num">5.6</span>MATERIA_PRIMA</a></li>
+<li><a href="#item-ficha-tecnica" data-search="item_ficha_tecnica"><span class="nav-num">5.7</span>ITEM_FICHA_TECNICA</a></li>
+<li><a href="#documento-regulatorio" data-search="documento_regulatorio"><span class="nav-num">5.8</span>DOCUMENTO_REGULATORIO</a></li>
+<li><a href="#fornecedor" data-search="fornecedor"><span class="nav-num">5.9</span>FORNECEDOR</a></li>
+<li><a href="#compra-item-compra" data-search="compra e item_compra"><span class="nav-num">5.10</span>COMPRA e ITEM_COMPRA</a></li>
+<li><a href="#producao" data-search="producao"><span class="nav-num">5.11</span>PRODUCAO</a></li>
+<li><a href="#cliente" data-search="cliente"><span class="nav-num">5.12</span>CLIENTE</a></li>
+<li><a href="#funcionario" data-search="funcionario"><span class="nav-num">5.13</span>FUNCIONARIO</a></li>
+<li><a href="#comanda-item-comanda" data-search="comanda e item_comanda"><span class="nav-num">5.14</span>COMANDA e ITEM_COMANDA</a></li>
+<li><a href="#venda-item-venda" data-search="venda e item_venda"><span class="nav-num">5.15</span>VENDA e ITEM_VENDA</a></li>
+<li><a href="#cancelamento-devolucao" data-search="cancelamento_devolucao"><span class="nav-num">5.16</span>CANCELAMENTO_DEVOLUCAO</a></li>
+<li><a href="#caixa-movimentacao-caixa" data-search="caixa e movimentacao_caixa"><span class="nav-num">5.17</span>CAIXA e MOVIMENTACAO_CAIXA</a></li>
+<li><a href="#log-auditoria" data-search="log_auditoria"><span class="nav-num">5.18</span>LOG_AUDITORIA</a></li>
+<li><a href="#encomenda" data-search="encomenda"><span class="nav-num">5.19</span>ENCOMENDA</a></li>
+      </ul>
+      <div class="sidebar-group-label">Encerramento</div>
+      <ul>
+        <li><a href="#decisoes-escopo">Decisões de escopo</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-foot">
+      Padaria Délicia II Ltda.<br>
+      Vila Ré, São Paulo–SP
+    </div>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <p class="eyebrow">ENTREGA 1 — MODELO CONCEITUAL (DER)</p>
+      <h1>Dicionário de Dados Conceitual</h1>
+      <p class="lead">Sistema de gestão de informações para a Padaria Délicia II Ltda. — cadastro, vendas, comandas, estoque, produção, compras e controle de caixa, com dados fictícios coerentes com a pesquisa de campo.</p>
+      <div class="meta-row">
+        <div><strong>Organização</strong>Padaria Délicia II Ltda.</div>
+        <div><strong>Entidades mapeadas</strong>17</div>
+        <div><strong>Codificação</strong>UTF-8 (utf8mb4)</div>
+        <div><strong>SGBD sugerido</strong>MySQL 8 / PostgreSQL 15</div>
+      </div>
+    </div>
+
+    <section class="block" id="modelo-conceitual">
+      <span class="section-num">5.1</span>
+      <h2 class="section-title">Modelo Conceitual</h2>
+      <p class="section-intro">Esse modelo representa um comércio do ramo alimentício que opera com serviços de panificadora, restaurante, pizzaria e sorveteria, no qual cada cliente entra, compra determinado produto e, posteriormente, paga o valor da venda deste produto. Todo o modelo foi adaptado ao contexto da Padaria Délicia II e todos os exemplos de valores citados neste dicionário são fictícios, coerentes com as operações observadas na pesquisa de campo, mas sem uso de dados reais de clientes ou funcionários da empresa.</p>
+      <h4 style="font-family:var(--sans);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--crust);margin:0 0 10px;">Visão geral das entidades e relacionamentos</h4>
+      <div class="table-wrap"><table>
+<thead><tr><th>Entidade</th><th>Relaciona-se com</th><th>Cardinalidade</th><th>Observação</th></tr></thead>
+<tbody>
+<tr>
+          <td><code class="attr-name">CATEGORIA</code></td>
+          <td><code class="attr-name">PRODUTO</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>uma categoria agrupa vários produtos</td>
+        </tr><tr>
+          <td><code class="attr-name">PRODUTO</code></td>
+          <td><code class="attr-name">ITEM_FICHA_TECNICA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um produto acabado pode ter vários insumos em sua ficha técnica</td>
+        </tr><tr>
+          <td><code class="attr-name">MATERIA_PRIMA</code></td>
+          <td><code class="attr-name">ITEM_FICHA_TECNICA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um insumo pode compor várias fichas técnicas (N:M entre PRODUTO e MATERIA_PRIMA, resolvido por ITEM_FICHA_TECNICA)</td>
+        </tr><tr>
+          <td><code class="attr-name">PRODUTO</code></td>
+          <td><code class="attr-name">PRODUCAO</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um produto é produzido em vários registros de produção ao longo do tempo</td>
+        </tr><tr>
+          <td><code class="attr-name">FUNCIONARIO</code></td>
+          <td><code class="attr-name">PRODUCAO</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um funcionário registra várias produções</td>
+        </tr><tr>
+          <td><code class="attr-name">FORNECEDOR</code></td>
+          <td><code class="attr-name">COMPRA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um fornecedor origina várias compras</td>
+        </tr><tr>
+          <td><code class="attr-name">COMPRA</code></td>
+          <td><code class="attr-name">ITEM_COMPRA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>uma compra tem vários itens</td>
+        </tr><tr>
+          <td><code class="attr-name">PRODUTO / MATERIA_PRIMA</code></td>
+          <td><code class="attr-name">ITEM_COMPRA</code></td>
+          <td><span class="card-badge">1:N (opcional/exclusivo)</span></td>
+          <td>um item de compra refere-se a um produto de revenda ou a um insumo, nunca os dois</td>
+        </tr><tr>
+          <td><code class="attr-name">PRODUTO</code></td>
+          <td><code class="attr-name">DOCUMENTO_REGULATORIO</code></td>
+          <td><span class="card-badge">1:N (opcional)</span></td>
+          <td>um produto pode ter vários laudos anexados; documento também pode não estar vinculado a nenhum produto (documento da empresa)</td>
+        </tr><tr>
+          <td><code class="attr-name">CLIENTE</code></td>
+          <td><code class="attr-name">COMANDA</code></td>
+          <td><span class="card-badge">1:N (opcional)</span></td>
+          <td>um cliente pode abrir várias comandas ao longo do tempo; comanda pode não ter cliente identificado</td>
+        </tr><tr>
+          <td><code class="attr-name">FUNCIONARIO</code></td>
+          <td><code class="attr-name">COMANDA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um funcionário abre/atende várias comandas</td>
+        </tr><tr>
+          <td><code class="attr-name">COMANDA</code></td>
+          <td><code class="attr-name">ITEM_COMANDA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>uma comanda tem vários itens consumidos</td>
+        </tr><tr>
+          <td><code class="attr-name">PRODUTO</code></td>
+          <td><code class="attr-name">ITEM_COMANDA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um produto pode aparecer em vários itens de comanda ao longo de diferentes atendimentos</td>
+        </tr><tr>
+          <td><code class="attr-name">CAIXA</code></td>
+          <td><code class="attr-name">VENDA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>várias vendas ocorrem dentro de uma sessão de caixa aberta</td>
+        </tr><tr>
+          <td><code class="attr-name">FUNCIONARIO</code></td>
+          <td><code class="attr-name">VENDA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um funcionário opera várias vendas</td>
+        </tr><tr>
+          <td><code class="attr-name">CLIENTE</code></td>
+          <td><code class="attr-name">VENDA</code></td>
+          <td><span class="card-badge">1:N (opcional)</span></td>
+          <td>um cliente cadastrado pode estar associado a várias vendas ao longo do tempo, formando seu histórico de compras (RF13); a venda pode não ter cliente identificado, como em vendas de balcão avulso sem comanda. Quando a venda é originada de uma comanda, o cliente da venda é o mesmo já vinculado à comanda; em vendas sem comanda (ex.: delivery, balcão), o cliente pode ser informado diretamente na venda, se cadastrado.</td>
+        </tr><tr>
+          <td><code class="attr-name">COMANDA</code></td>
+          <td><code class="attr-name">VENDA</code></td>
+          <td><span class="card-badge">1:1 (opcional)</span></td>
+          <td>uma comanda fechada origina no máximo uma venda de pagamento; nem toda venda vem de comanda (ex.: delivery, balcão)</td>
+        </tr><tr>
+          <td><code class="attr-name">VENDA</code></td>
+          <td><code class="attr-name">ITEM_VENDA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>uma venda contém um ou mais itens vendidos</td>
+        </tr><tr>
+          <td><code class="attr-name">PRODUTO</code></td>
+          <td><code class="attr-name">ITEM_VENDA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>um produto pode aparecer em vários itens de venda ao longo de diferentes vendas</td>
+        </tr><tr>
+          <td><code class="attr-name">VENDA</code></td>
+          <td><code class="attr-name">CANCELAMENTO_DEVOLUCAO</code></td>
+          <td><span class="card-badge">1:N (opcional)</span></td>
+          <td>uma venda pode ter zero ou mais cancelamentos/devoluções parciais</td>
+        </tr><tr>
+          <td><code class="attr-name">FUNCIONARIO</code></td>
+          <td><code class="attr-name">CANCELAMENTO_DEVOLUCAO</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>autorizador do cancelamento</td>
+        </tr><tr>
+          <td><code class="attr-name">FUNCIONARIO</code></td>
+          <td><code class="attr-name">CAIXA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>abre e (opcionalmente, outro turno) fecha o caixa</td>
+        </tr><tr>
+          <td><code class="attr-name">CAIXA</code></td>
+          <td><code class="attr-name">MOVIMENTACAO_CAIXA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>sangrias e suprimentos dentro de uma sessão de caixa</td>
+        </tr><tr>
+          <td><code class="attr-name">FUNCIONARIO</code></td>
+          <td><code class="attr-name">MOVIMENTACAO_CAIXA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>responsável pela movimentação</td>
+        </tr><tr>
+          <td><code class="attr-name">FUNCIONARIO</code></td>
+          <td><code class="attr-name">LOG_AUDITORIA</code></td>
+          <td><span class="card-badge">1:N</span></td>
+          <td>cada ação relevante gera um registro de log</td>
+        </tr>
+</tbody>
+</table></div>
+    </section>
+
+    <section class="block" id="fluxo-dados">
+      <span class="section-num">5.2</span>
+      <h2 class="section-title">Fluxo de Dados</h2>
+      <p class="section-intro">Como as entidades se articulam ao longo dos principais processos de negócio da padaria, do atendimento no salão ao fechamento de caixa.</p>
+      <div class="flow-item">
+          <div class="flow-title">Atendimento no salão <span class="ref-tag">RF26</span></div>
+          <p>cliente chega ao salão → funcionário abre uma COMANDA, vinculando o CLIENTE (se identificado) e o FUNCIONARIO responsável → cada item consumido gera um registro em ITEM_COMANDA, referenciando o PRODUTO correspondente → o fechamento da comanda (TP_STATUS = FECHADA) só ocorre vinculado a uma VENDA de pagamento — nunca antes (RN08) → essa VENDA herda o cliente da comanda e replica os itens em ITEM_VENDA, dando baixa automática em QT_ESTOQUE de cada PRODUTO (RF05).</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Venda avulsa e delivery </div>
+          <p>balcão avulso ou pedido por delivery → VENDA é registrada diretamente, sem ID_COMANDA — cliente é opcional → mesma baixa de estoque via ITEM_VENDA → mudança de status da venda pode disparar notificação ao CLIENTE pelo CD_TELEFONE, via WhatsApp (RF27).</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Caixa </div>
+          <p>início do turno → funcionário abre um CAIXA (VL_ABERTURA) → toda VENDA do turno fica vinculada a essa sessão de caixa → sangrias e suprimentos são lançados em MOVIMENTACAO_CAIXA → ao fechar, o sistema soma VL_TOTAL_SISTEMA a partir das vendas do período e compara ao VL_TOTAL_INFORMADO pelo funcionário, apurando VL_DIFERENCA — resolvendo a divergência hoje apurada de forma verbal (RN07, RF16).</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Fluxo de mercadoria — compras <span class="ref-tag">RF12</span></div>
+          <p>FORNECEDOR → COMPRA registrada com um ou mais ITEM_COMPRA, cada um referenciando ou um PRODUTO de revenda ou uma MATERIA_PRIMA (nunca os dois) → confirmação da compra atualiza QT_ESTOQUE do produto ou insumo correspondente.</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Fluxo de mercadoria — produção <span class="ref-tag">RF08, RF09, RF10</span></div>
+          <p>a composição de cada PRODUTO acabado é definida previamente em ITEM_FICHA_TECNICA → ao registrar uma PRODUCAO, o sistema dá baixa em QT_ESTOQUE de cada MATERIA_PRIMA conforme a QT_QUANTIDADE prevista na ficha técnica, e soma QT_PRODUZIDA ao QT_ESTOQUE do PRODUTO acabado, disponibilizando-o para venda (RN06).</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Cancelamento e devolução <span class="ref-tag">RF20</span></div>
+          <p>VENDA concluída → CANCELAMENTO_DEVOLUCAO referencia a venda original e, quando parcial, o PRODUTO devolvido → estoque é ajustado de volta quando aplicável.</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Documentação regulatória <span class="ref-tag">RF25, RN10</span></div>
+          <p>PRODUTO ou o próprio estabelecimento (quando ID_PRODUTO fica nulo) recebe um ou mais DOCUMENTO_REGULATORIO anexados — ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento ou código de defesa do consumidor.</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Encomendas — baixa prioridade, não confirmado <span class="ref-tag">RF14/RF15</span></div>
+          <p>CLIENTE solicita uma ENCOMENDA de um PRODUTO com data de retirada/entrega → status evolui de PENDENTE a ENTREGUE ou CANCELADA. Fluxo isolado, sem ligação com VENDA ou COMANDA nesta versão preliminar — coerente com seu status de requisito não confirmado em campo.</p>
+        </div>
+<div class="flow-item">
+          <div class="flow-title">Auditoria — transversal a todos os fluxos acima <span class="ref-tag">RF24, RNF13</span></div>
+          <p>toda operação relevante de inserção, atualização ou exclusão nas tabelas citadas gera um registro em LOG_AUDITORIA, identificando o FUNCIONARIO responsável, a tabela afetada e o momento da ação — o que sustenta a auditoria exigida e, somado às restrições já descritas para CLIENTE e FUNCIONARIO, a conformidade com a LGPD (RN11).</p>
+        </div>
+    </section>
+
+    <section class="block" id="convencoes">
+      <span class="section-num">5.3</span>
+      <h2 class="section-title">Convenções adotadas</h2>
+      <p class="section-intro"><strong>SGBD sugerido:</strong> a ser confirmado pela equipe. Recomenda-se MySQL 8 ou PostgreSQL 15, ambos compatíveis com os requisitos de desempenho (RNF01), concorrência (RNF18) e implantação híbrida local/nuvem (RNF19) levantados.<br><br>
+      <strong>Codificação de caracteres:</strong> utf8mb4 (ou equivalente em UTF-8), para cobertura de acentuação do português em nomes de produtos, clientes e observações de texto livre.</p>
+
+      <h4 style="font-family:var(--sans);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--crust);margin:22px 0 10px;">Notação formal</h4>
+      <div class="table-wrap"><table class="table-compact">
+<thead><tr><th>Símbolo</th><th>Significado</th></tr></thead>
+<tbody><tr><td><code>=</code></td><td>é composto de</td></tr><tr><td><code>+</code></td><td>e (conecta elementos obrigatórios)</td></tr><tr><td><code>( )</code></td><td>opcional</td></tr><tr><td><code>{ }, n{ }m</code></td><td>iteração, com limite mínimo n e máximo m</td></tr><tr><td><code>[ | ]</code></td><td>escolha obrigatória entre alternativas</td></tr><tr><td><code>/ /</code></td><td>rótulo de um grupo repetitivo</td></tr><tr><td><code>@</code></td><td>identificador (chave primária)</td></tr><tr><td><code>* *</code></td><td>comentário, fora da estrutura formal</td></tr></tbody>
+</table></div>
+
+      <h4 style="font-family:var(--sans);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--crust);margin:22px 0 10px;">Prefixos de atributos</h4>
+      <div class="table-wrap"><table class="table-compact">
+<thead><tr><th>Prefixo</th><th>Significado</th></tr></thead>
+<tbody><tr><td><code>NM_</code></td><td>nome</td></tr><tr><td><code>DT_</code></td><td>data</td></tr><tr><td><code>ID_</code></td><td>identificador (não sofre operação matemática)</td></tr><tr><td><code>CD_</code></td><td>código de domínio</td></tr><tr><td><code>QT_</code></td><td>quantidade</td></tr><tr><td><code>TP_</code></td><td>tipo (categorização)</td></tr><tr><td><code>IN_</code></td><td>indicador booleano</td></tr><tr><td><code>DS_</code></td><td>descrição/texto livre</td></tr><tr><td><code>VL_</code></td><td>valor monetário (preços, custos, totais) — prefixo próprio deste dicionário, específico do domínio comercial da padaria</td></tr></tbody>
+</table></div>
+
+      <p class="section-intro" style="margin-top:18px;"><strong>Campos de escolha:</strong> quando um atributo tem um conjunto fechado de valores (ex.: status, tipo, forma de pagamento), a notação formal do topo de cada entidade lista os valores possíveis entre colchetes com prefixo <code>TP_</code> (ex.: <code>[TP_ABERTA | TP_FECHADA]</code>); na tabela física, esse conjunto de valores é armazenado em uma única coluna com nome de domínio (ex.: <code>TP_STATUS</code>, valores <code>ABERTA</code>/<code>FECHADA</code>), em vez de repetir o prefixo <code>TP_</code> em cada valor armazenado — o que deixa as tabelas mais legíveis e diretamente implementáveis como ENUM/VARCHAR com domínio fechado.</p>
+      <p class="section-intro"><strong>Escopo priorizado:</strong> os requisitos RF14 (pedidos antecipados) e RF15 (encomendas personalizadas) não foram confirmados pela gestão na entrevista de campo. Por isso, sua entidade (ENCOMENDA) aparece ao final, com prioridade baixa e marcação explícita de "não confirmado".</p>
+    </section>
+
+    <section class="block" id="entidades">
+      <span class="section-num">5.4 – 5.19</span>
+      <h2 class="section-title">Entidades, atributos e regras de negócio</h2>
+      <p class="section-intro">Cada entidade traz sua notação formal, uma leitura interpretativa das decisões de modelagem e a tabela física de atributos, com tipo, obrigatoriedade e a regra de negócio associada.</p>
+      
+<section class="entity" id="categoria">
+  <div class="entity-head">
+    <span class="entity-num">5.4</span>
+    <h3>CATEGORIA</h3>
+    
+  </div>
+  
+  <pre class="notation">CATEGORIA = @ID_CATEGORIA + NM_CATEGORIA</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>Entidade simples de apoio ao cadastro de produtos (RF02); ambos os campos são obrigatórios e não há atributos opcionais nesta versão preliminar.</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_CATEGORIA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador da categoria de produto.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">NM_CATEGORIA</code></td><td>varchar(60)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Nome da categoria (ex.: "Pães", "Confeitaria", "Bebidas", "Salgados").</td><td>Deve ser único, para evitar categorias duplicadas com grafias diferentes.</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_CATEGORIA; índice único em NM_CATEGORIA.</p>
+</section>
+
+
+<section class="entity" id="produto">
+  <div class="entity-head">
+    <span class="entity-num">5.5</span>
+    <h3>PRODUTO</h3>
+    
+  </div>
+  
+  <pre class="notation">PRODUTO = @ID_PRODUTO + CD_PRODUTO + NM_PRODUTO + (DS_PRODUTO) +
+ID_CATEGORIA + VL_PRECO_VENDA + VL_CUSTO + CD_UNIDADE +
+QT_ESTOQUE + QT_ESTOQUE_MINIMO + (DT_VALIDADE) +
+IN_PRODUTO_ESSENCIAL + IN_ATIVO</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>Representa exclusivamente produtos acabados vendáveis ao cliente (itens de revenda ou de produção própria já finalizados), distintos dos insumos, que ficam em MATERIA_PRIMA. CD_PRODUTO é o código de negócio do produto (RF01), distinto de ID_PRODUTO — chave técnica interna que nunca deve ser exposta como identificador de negócio (ver justificativa na seção 8). DT_VALIDADE fica entre parênteses porque só se aplica a produtos perecíveis (RF01); IN_PRODUTO_ESSENCIAL sinaliza itens como o pão francês, cuja falta de estoque é crítica (RN09).</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador técnico único do produto (chave interna, não exposta ao operador).</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">CD_PRODUTO</code></td><td>varchar(20)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Código de negócio do produto — código de barras (EAN), quando o item é de revenda, ou código interno curto atribuído pela padaria para itens de produção própria.</td><td>RF01 — cadastro de produtos; RF23 — busca de produtos por código, que precisa ser rápida.</td></tr><tr><td class="col-attr"><code class="attr-name">NM_PRODUTO</code></td><td>varchar(120)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Nome comercial do produto (ex.: "Pão Francês", "Bolo de Chocolate").</td><td>Usado nas buscas rápidas de cadastro e consulta de preço (RF23), que precisam responder em até 2s (RNF01).</td></tr><tr><td class="col-attr"><code class="attr-name">DS_PRODUTO</code></td><td>text</td><td class="col-req"><span class="req-no">Não</span></td><td>Descrição livre do produto.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_CATEGORIA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Categoria à qual o produto pertence.</td><td>Ver CATEGORIA.</td></tr><tr><td class="col-attr"><code class="attr-name">VL_PRECO_VENDA</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Preço unitário de venda ao cliente.</td><td>Base do cálculo automático do total da venda (RF03).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_CUSTO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Custo unitário de aquisição ou produção.</td><td>Usado em relatórios gerenciais de faturamento (RF21).</td></tr><tr><td class="col-attr"><code class="attr-name">CD_UNIDADE</code></td><td>varchar(5)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Unidade de medida/venda (ex.: UN, KG, CX).</td><td>Domínio fechado definido pela padaria.</td></tr><tr><td class="col-attr"><code class="attr-name">QT_ESTOQUE</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Quantidade atual em estoque.</td><td>Atualizada automaticamente após cada venda e produção (RF05); não pode ficar negativa, salvo autorização do administrador (RN02).</td></tr><tr><td class="col-attr"><code class="attr-name">QT_ESTOQUE_MINIMO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Nível mínimo de estoque configurado para o produto.</td><td>Dispara alerta de reposição (RF06); produtos essenciais têm prioridade de alerta (RN09).</td></tr><tr><td class="col-attr"><code class="attr-name">DT_VALIDADE</code></td><td>date</td><td class="col-req"><span class="req-no">Não</span></td><td>Data de validade do lote atual, quando aplicável.</td><td>Produto vencido não pode ser vendido (RN01); gera alerta de vencimento próximo (RF07).</td></tr><tr><td class="col-attr"><code class="attr-name">IN_PRODUTO_ESSENCIAL</code></td><td>boolean</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Indica se o produto é crítico para a operação (ex.: pão francês).</td><td>Prioriza alertas de estoque mínimo sobre os demais produtos (RN09).</td></tr><tr><td class="col-attr"><code class="attr-name">IN_ATIVO</code></td><td>boolean</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Indica se o produto está ativo para venda.</td><td>Produto inativo some das telas de venda, sem perder histórico.</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_PRODUTO; índice único em CD_PRODUTO (evita duplicidade de código de negócio); índice secundário em NM_PRODUTO (busca rápida — RF23); índice em ID_CATEGORIA.</p>
+</section>
+
+
+<section class="entity" id="materia-prima">
+  <div class="entity-head">
+    <span class="entity-num">5.6</span>
+    <h3>MATERIA_PRIMA</h3>
+    
+  </div>
+  
+  <pre class="notation">MATERIA_PRIMA = @ID_MATERIA_PRIMA + NM_MATERIA_PRIMA +
+CD_UNIDADE + QT_ESTOQUE + (QT_ESTOQUE_MINIMO)</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>Entidade separada de PRODUTO por decisão do grupo, para deixar explícito que insumos (farinha, ovos, fermento etc.) não são vendáveis diretamente ao cliente e têm ciclo de vida próprio — entram por COMPRA e saem por baixa automática durante a PRODUCAO (RF10).</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_MATERIA_PRIMA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do insumo.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">NM_MATERIA_PRIMA</code></td><td>varchar(120)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Nome do insumo (ex.: "Farinha de trigo tipo 1").</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">CD_UNIDADE</code></td><td>varchar(5)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Unidade de medida do insumo (ex.: KG, L, UN).</td><td>Deve ser compatível com a unidade usada em ITEM_FICHA_TECNICA.</td></tr><tr><td class="col-attr"><code class="attr-name">QT_ESTOQUE</code></td><td>decimal(10,3)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Quantidade atual em estoque do insumo.</td><td>Baixa automática conforme a produção registrada (RF10).</td></tr><tr><td class="col-attr"><code class="attr-name">QT_ESTOQUE_MINIMO</code></td><td>decimal(10,3)</td><td class="col-req"><span class="req-no">Não</span></td><td>Nível mínimo configurado, quando controlado.</td><td>Uso opcional nesta primeira etapa; controle de estoque hoje é totalmente manual (levantamento de campo).</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_MATERIA_PRIMA; índice secundário em NM_MATERIA_PRIMA.</p>
+</section>
+
+
+<section class="entity" id="item-ficha-tecnica">
+  <div class="entity-head">
+    <span class="entity-num">5.7</span>
+    <h3>ITEM_FICHA_TECNICA</h3>
+    
+  </div>
+  
+  <pre class="notation">ITEM_FICHA_TECNICA = @(ID_PRODUTO + ID_MATERIA_PRIMA) +
+QT_QUANTIDADE</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>Entidade associativa que resolve o relacionamento N:M entre PRODUTO (acabado) e MATERIA_PRIMA — a ficha técnica de composição exigida pelo RF09. A chave primária composta impede duplicidade do mesmo insumo na ficha técnica de um mesmo produto.</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span><span class="badge badge-fk">FK</span></td><td>Produto acabado ao qual a composição pertence.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_MATERIA_PRIMA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span><span class="badge badge-fk">FK</span></td><td>Insumo que compõe o produto.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td><td>decimal(10,3)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Quantidade do insumo necessária para produzir uma unidade do produto.</td><td>Base do cálculo de baixa automática de matéria-prima ao registrar produção (RF10).</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK composta (ID_PRODUTO, ID_MATERIA_PRIMA).</p>
+</section>
+
+
+<section class="entity" id="documento-regulatorio">
+  <div class="entity-head">
+    <span class="entity-num">5.8</span>
+    <h3>DOCUMENTO_REGULATORIO</h3>
+    
+  </div>
+  
+  <pre class="notation">DOCUMENTO_REGULATORIO = @ID_DOCUMENTO + [TP_FICHA_TECNICA |
+TP_LAUDO_BOMBEIRO | TP_LAUDO_SANITARIO | TP_ALVARA_FUNCIONAMENTO
+| TP_CODIGO_DEFESA_CONSUMIDOR] + DS_ARQUIVO + DT_EMISSAO +
+(DT_VALIDADE) + (ID_PRODUTO)</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>ID_PRODUTO fica entre parênteses porque o documento pode estar vinculado a um produto específico (ex.: ficha técnica de um item) ou ao estabelecimento como um todo (ex.: alvará de funcionamento), caso em que o campo fica nulo.</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_DOCUMENTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do documento anexado.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">TP_DOCUMENTO</code></td><td>varchar(30)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Tipo do laudo: FICHA_TECNICA, LAUDO_BOMBEIRO, LAUDO_SANITARIO, ALVARA_FUNCIONAMENTO ou CODIGO_DEFESA_CONSUMIDOR.</td><td>Exigência legal de vigilância sanitária e corpo de bombeiros (RN10); ausência pode gerar multa ou interdição.</td></tr><tr><td class="col-attr"><code class="attr-name">DS_ARQUIVO</code></td><td>varchar(255)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Caminho/referência do arquivo PDF ou imagem anexado.</td><td>RF25 — anexação de documentos e laudos regulatórios.</td></tr><tr><td class="col-attr"><code class="attr-name">DT_EMISSAO</code></td><td>date</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data de emissão do documento.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_VALIDADE</code></td><td>date</td><td class="col-req"><span class="req-no">Não</span></td><td>Data de validade do documento, quando aplicável.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Produto ao qual o documento se refere, quando aplicável.</td><td>Nulo quando o documento pertence ao estabelecimento, e não a um produto específico.</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_DOCUMENTO; índice em ID_PRODUTO; índice em TP_DOCUMENTO.</p>
+</section>
+
+
+<section class="entity" id="fornecedor">
+  <div class="entity-head">
+    <span class="entity-num">5.9</span>
+    <h3>FORNECEDOR</h3>
+    
+  </div>
+  
+  <pre class="notation">FORNECEDOR = @ID_FORNECEDOR + NM_FORNECEDOR + CD_CNPJ_CPF +
+(NM_CONTATO) + (CD_TELEFONE) + (DS_ENDERECO)</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>CD_CNPJ_CPF aceita tanto CNPJ (pessoa jurídica) quanto CPF (pessoa física), pois o RF11 não restringe o fornecedor a empresas formalmente constituídas. O RF11 também menciona "produtos fornecidos" como atributo do fornecedor; decidimos não modelar um catálogo explícito fornecedor↔produto/insumo nesta etapa — essa informação já é derivável do histórico em ITEM_COMPRA, e um catálogo à parte exigiria manutenção manual constante sem ganho de desempenho relevante na escala da padaria (ver Decisões de escopo desta etapa).</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_FORNECEDOR</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do fornecedor.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">NM_FORNECEDOR</code></td><td>varchar(150)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Razão social do fornecedor.</td><td>RF11 — cadastro de fornecedores.</td></tr><tr><td class="col-attr"><code class="attr-name">CD_CNPJ_CPF</code></td><td>varchar(14)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>CNPJ (pessoa jurídica) ou CPF (pessoa física) do fornecedor.</td><td>Deve ser único; formato validado conforme o tipo de documento.</td></tr><tr><td class="col-attr"><code class="attr-name">NM_CONTATO</code></td><td>varchar(120)</td><td class="col-req"><span class="req-no">Não</span></td><td>Nome da pessoa de contato no fornecedor.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">CD_TELEFONE</code></td><td>varchar(20)</td><td class="col-req"><span class="req-no">Não</span></td><td>Telefone de contato.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DS_ENDERECO</code></td><td>varchar(255)</td><td class="col-req"><span class="req-no">Não</span></td><td>Endereço do fornecedor.</td><td>—</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_FORNECEDOR; índice único em CD_CNPJ_CPF.</p>
+</section>
+
+
+<section class="entity" id="compra-item-compra">
+  <div class="entity-head">
+    <span class="entity-num">5.10</span>
+    <h3>COMPRA e ITEM_COMPRA</h3>
+    
+  </div>
+  
+  <pre class="notation">COMPRA = @ID_COMPRA + ID_FORNECEDOR + DT_COMPRA +
+(CD_NOTA_FISCAL) + VL_TOTAL
+
+ITEM_COMPRA = @(ID_COMPRA + ID_ITEM) + [ID_PRODUTO |
+ID_MATERIA_PRIMA] + QT_QUANTIDADE + VL_UNITARIO</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>[ID_PRODUTO | ID_MATERIA_PRIMA] expressa a regra de que cada item de compra referencia ou um produto de revenda ou um insumo — nunca os dois ao mesmo tempo — refletindo que a padaria tem atividade tanto de revenda quanto de produção própria.</p></div>
+  <h4>COMPRA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_COMPRA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador da compra.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FORNECEDOR</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Fornecedor da compra.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_COMPRA</code></td><td>date</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data da compra.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">CD_NOTA_FISCAL</code></td><td>varchar(44)</td><td class="col-req"><span class="req-no">Não</span></td><td>Número/chave da nota fiscal.</td><td>Registro de compras (RF12).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_TOTAL</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor total da compra.</td><td>Calculado a partir da soma dos itens.</td></tr>
+</tbody>
+</table></div>
+<h4>ITEM_COMPRA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_COMPRA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span><span class="badge badge-fk">FK</span></td><td>Compra à qual o item pertence.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_ITEM</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Sequencial do item dentro da compra.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Produto de revenda comprado, quando aplicável.</td><td>Exatamente um entre ID_PRODUTO e ID_MATERIA_PRIMA deve estar preenchido.</td></tr><tr><td class="col-attr"><code class="attr-name">ID_MATERIA_PRIMA</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Insumo comprado, quando aplicável.</td><td>Idem acima.</td></tr><tr><td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td><td>decimal(10,3)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Quantidade comprada do item.</td><td>Atualiza o estoque do produto/insumo ao confirmar a compra (RF12).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_UNITARIO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor unitário pago no item.</td><td>—</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_COMPRA (COMPRA); PK composta (ID_COMPRA, ID_ITEM) (ITEM_COMPRA); índice em ID_PRODUTO; índice em ID_MATERIA_PRIMA.</p>
+</section>
+
+
+<section class="entity" id="producao">
+  <div class="entity-head">
+    <span class="entity-num">5.11</span>
+    <h3>PRODUCAO</h3>
+    
+  </div>
+  
+  <pre class="notation">PRODUCAO = @ID_PRODUCAO + ID_PRODUTO + ID_FUNCIONARIO +
+DT_PRODUCAO + QT_PRODUZIDA</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>ID_FUNCIONARIO é obrigatório para manter a rastreabilidade de quem registrou cada produção — apoia RNF13 (auditoria) e a regra de que a produção deve ser registrada antes da disponibilização para venda (RN06). O modelo trata cada PRODUCAO como um lançamento simples de quantidade produzida em uma data/hora, sem controle de lote individual, nível de detalhe suficiente para os relatórios gerenciais pedidos (RF21).</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_PRODUCAO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do registro de produção.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Produto acabado produzido.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Funcionário responsável pela produção registrada.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_PRODUCAO</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/hora da produção.</td><td>Quantidade produzida deve ser registrada antes da disponibilização para venda (RN06).</td></tr><tr><td class="col-attr"><code class="attr-name">QT_PRODUZIDA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Quantidade produzida na ocorrência registrada.</td><td>Atualiza automaticamente o estoque do produto (RF08) e gera baixa dos insumos conforme ITEM_FICHA_TECNICA (RF10).</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_PRODUCAO; índice em ID_PRODUTO; índice em DT_PRODUCAO (relatórios por período — RF21).</p>
+</section>
+
+
+<section class="entity" id="cliente">
+  <div class="entity-head">
+    <span class="entity-num">5.12</span>
+    <h3>CLIENTE</h3>
+    
+  </div>
+  
+  <pre class="notation">CLIENTE = @ID_CLIENTE + NM_CLIENTE + (CD_TELEFONE) + DT_CADASTRO</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>Campos limitados a nome e telefone porque são dados pessoais sujeitos à LGPD (RNF14, RN11) — mesmo que a gestão não os perceba como sensíveis, exigem controle de acesso e finalidade de uso definidos.</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_CLIENTE</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do cliente.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">NM_CLIENTE</code></td><td>varchar(120)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Nome do cliente.</td><td>Dado pessoal — acesso restrito conforme LGPD (RN11).</td></tr><tr><td class="col-attr"><code class="attr-name">CD_TELEFONE</code></td><td>varchar(20)</td><td class="col-req"><span class="req-no">Não</span></td><td>Telefone de contato, usado também para notificações via WhatsApp.</td><td>RF27 — integração com WhatsApp; dado pessoal (RN11).</td></tr><tr><td class="col-attr"><code class="attr-name">DT_CADASTRO</code></td><td>date</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data de cadastro do cliente.</td><td>—</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_CLIENTE; índice secundário em NM_CLIENTE e em CD_TELEFONE (busca rápida no atendimento).</p>
+</section>
+
+
+<section class="entity" id="funcionario">
+  <div class="entity-head">
+    <span class="entity-num">5.13</span>
+    <h3>FUNCIONARIO</h3>
+    
+  </div>
+  
+  <pre class="notation">FUNCIONARIO = @ID_FUNCIONARIO + NM_FUNCIONARIO + [TP_SOCIO |
+TP_OPERACIONAL] + [TP_MANHA | TP_NOITE] + CD_LOGIN +
+DS_SENHA_HASH + IN_ATIVO</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>[TP_SOCIO | TP_OPERACIONAL] reflete a distinção confirmada em campo entre cargos de confiança (2 sócios) e equipe operacional (10 funcionários); [TP_MANHA | TP_NOITE] reflete os dois níveis de acesso por turno relatados na entrevista de campo.</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do funcionário.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">NM_FUNCIONARIO</code></td><td>varchar(120)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Nome do funcionário.</td><td>Dado pessoal de colaborador — mesma cautela de acesso do cliente (RNF14).</td></tr><tr><td class="col-attr"><code class="attr-name">TP_CARGO</code></td><td>varchar(15)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Classifica o funcionário como SOCIO (cargo de confiança) ou OPERACIONAL.</td><td>RF18 — controle de funcionários; base para o controle de permissões (RF19).</td></tr><tr><td class="col-attr"><code class="attr-name">TP_TURNO</code></td><td>varchar(10)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Turno de trabalho: MANHA ou NOITE.</td><td>Restringe operações por turno, além do perfil (RF19, RNF04).</td></tr><tr><td class="col-attr"><code class="attr-name">CD_LOGIN</code></td><td>varchar(40)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Identificador de acesso ao sistema.</td><td>Deve ser único; autenticação obrigatória para funções administrativas (RNF03).</td></tr><tr><td class="col-attr"><code class="attr-name">DS_SENHA_HASH</code></td><td>varchar(255)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Senha armazenada de forma criptografada.</td><td>Nunca armazenada em texto puro (RNF03).</td></tr><tr><td class="col-attr"><code class="attr-name">IN_ATIVO</code></td><td>boolean</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Indica se o funcionário está ativo.</td><td>Funcionário desligado perde acesso sem apagar seu histórico de ações.</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_FUNCIONARIO; índice único em CD_LOGIN.</p>
+</section>
+
+
+<section class="entity" id="comanda-item-comanda">
+  <div class="entity-head">
+    <span class="entity-num">5.14</span>
+    <h3>COMANDA e ITEM_COMANDA</h3>
+    
+  </div>
+  
+  <pre class="notation">COMANDA = @ID_COMANDA + (ID_CLIENTE) + ID_FUNCIONARIO +
+DT_ABERTURA + (DT_FECHAMENTO) + [TP_ABERTA | TP_FECHADA]
+
+ITEM_COMANDA = @(ID_COMANDA + ID_ITEM) + ID_PRODUTO +
+QT_QUANTIDADE + VL_UNITARIO</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>Entidade de prioridade máxima do projeto (RF26) — ataca diretamente a causa do prejuízo relatado (clientes que saem sem pagar). ID_CLIENTE é opcional porque o atendimento no salão pode ocorrer sem cadastro prévio do cliente; um mesmo cliente pode abrir várias comandas ao longo do tempo, em visitas diferentes.</p></div>
+  <h4>COMANDA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_COMANDA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador da comanda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_CLIENTE</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Cliente vinculado à comanda, quando identificado.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Funcionário que abriu/atendeu a comanda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_ABERTURA</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/hora de abertura do atendimento.</td><td>RF26 — abertura de comanda ao iniciar o atendimento no salão.</td></tr><tr><td class="col-attr"><code class="attr-name">DT_FECHAMENTO</code></td><td>datetime</td><td class="col-req"><span class="req-no">Não</span></td><td>Data/hora de fechamento da comanda.</td><td>Preenchido somente quando o pagamento é confirmado.</td></tr><tr><td class="col-attr"><code class="attr-name">TP_STATUS</code></td><td>varchar(10)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Status da comanda: ABERTA ou FECHADA.</td><td>Não permite encerrar atendimento com comanda em aberto sem pagamento registrado (RN08).</td></tr>
+</tbody>
+</table></div>
+<h4>ITEM_COMANDA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_COMANDA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span><span class="badge badge-fk">FK</span></td><td>Comanda à qual o item pertence.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_ITEM</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Sequencial do item dentro da comanda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Produto consumido.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td><td>decimal(10,3)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Quantidade consumida do produto.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">VL_UNITARIO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor unitário no momento do consumo.</td><td>Base do valor total cobrado ao fechar a comanda.</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_COMANDA (COMANDA); PK composta (ID_COMANDA, ID_ITEM) (ITEM_COMANDA); índice em ID_CLIENTE; índice em TP_STATUS (localizar comandas abertas rapidamente).</p>
+</section>
+
+
+<section class="entity" id="venda-item-venda">
+  <div class="entity-head">
+    <span class="entity-num">5.15</span>
+    <h3>VENDA e ITEM_VENDA</h3>
+    
+  </div>
+  
+  <pre class="notation">VENDA = @ID_VENDA + DT_VENDA + ID_CAIXA + ID_FUNCIONARIO +
+(ID_CLIENTE) + (ID_COMANDA) + [TP_BALCAO | TP_DELIVERY] +
+[TP_DINHEIRO | TP_PIX | TP_DEBITO | TP_CREDITO |
+TP_VALE_ALIMENTACAO] + VL_TOTAL + (VL_DESCONTO) + VL_RECEBIDO +
+VL_TROCO + [TP_CONCLUIDA | TP_CANCELADA]
+
+ITEM_VENDA = @(ID_VENDA + ID_ITEM) + ID_PRODUTO + QT_QUANTIDADE
++ VL_UNITARIO + (VL_DESCONTO_ITEM)</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>ID_COMANDA é opcional porque nem toda venda é originada de uma comanda do salão (delivery e balcão avulso não passam por comanda); VL_DESCONTO é opcional pois desconto acima de um percentual definido só é aplicado mediante autorização (RN03).</p></div>
+  <h4>VENDA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_VENDA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador da venda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_VENDA</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/hora da venda.</td><td>Consta no comprovante emitido (RF04).</td></tr><tr><td class="col-attr"><code class="attr-name">ID_CAIXA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Sessão de caixa em que a venda foi registrada.</td><td>Base da conferência de fechamento de caixa (RF16, RN07).</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Funcionário/operador que realizou a venda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_CLIENTE</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Cliente vinculado à venda, quando identificado — herdado da comanda de origem (se houver) ou informado diretamente na venda (delivery/balcão).</td><td>Compõe o histórico de compras do cliente (RF13).</td></tr><tr><td class="col-attr"><code class="attr-name">ID_COMANDA</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Comanda de origem, quando a venda decorre de atendimento no salão.</td><td>RF26 — vincula o fechamento da comanda ao pagamento.</td></tr><tr><td class="col-attr"><code class="attr-name">TP_CANAL</code></td><td>varchar(10)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Canal da venda: BALCAO ou DELIVERY.</td><td>Delivery soma em média 50 pedidos/dia (levantamento de campo).</td></tr><tr><td class="col-attr"><code class="attr-name">TP_FORMA_PAGAMENTO</code></td><td>varchar(20)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Forma de pagamento: DINHEIRO, PIX, DEBITO, CREDITO ou VALE_ALIMENTACAO.</td><td>Atributo da venda conforme RF03 — registro de vendas, que já prevê forma de pagamento entre seus dados.</td></tr><tr><td class="col-attr"><code class="attr-name">VL_TOTAL</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor total da venda.</td><td>Calculado automaticamente a partir dos itens (RF03).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_DESCONTO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-no">Não</span></td><td>Valor de desconto aplicado.</td><td>Acima de um percentual definido, exige autorização (RN03).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_RECEBIDO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor efetivamente recebido do cliente.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">VL_TROCO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Troco calculado.</td><td>Calculado automaticamente (RF03).</td></tr><tr><td class="col-attr"><code class="attr-name">TP_STATUS</code></td><td>varchar(10)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Status da venda: CONCLUIDA ou CANCELADA.</td><td>Cancelamento após fechamento de caixa exige autorização de gerente/administrador (RN04).</td></tr>
+</tbody>
+</table></div>
+<h4>ITEM_VENDA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_VENDA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span><span class="badge badge-fk">FK</span></td><td>Venda à qual o item pertence.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_ITEM</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Sequencial do item dentro da venda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Produto vendido.</td><td>Bloqueia venda de produto vencido (RN01) ou acima do estoque disponível, salvo autorização (RN02).</td></tr><tr><td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td><td>decimal(10,3)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Quantidade vendida do produto.</td><td>Dá baixa automática no estoque (RF05).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_UNITARIO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor unitário no momento da venda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">VL_DESCONTO_ITEM</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-no">Não</span></td><td>Desconto aplicado especificamente a este item.</td><td>Idem RN03.</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_VENDA (VENDA); PK composta (ID_VENDA, ID_ITEM) (ITEM_VENDA); índice em DT_VENDA (relatórios por período — RF21); índice em ID_CAIXA; índice em ID_CLIENTE.</p>
+</section>
+
+
+<section class="entity" id="cancelamento-devolucao">
+  <div class="entity-head">
+    <span class="entity-num">5.16</span>
+    <h3>CANCELAMENTO_DEVOLUCAO</h3>
+    
+  </div>
+  
+  <pre class="notation">CANCELAMENTO_DEVOLUCAO = @ID_CANCELAMENTO + ID_VENDA +
+(ID_PRODUTO) + DT_CANCELAMENTO + DS_MOTIVO + ID_FUNCIONARIO</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>ID_PRODUTO é opcional pois o cancelamento pode ser da venda inteira ou de um item específico (devolução parcial).</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_CANCELAMENTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do registro de cancelamento/devolução.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_VENDA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Venda original relacionada.</td><td>RF20.</td></tr><tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Produto devolvido, quando a devolução é parcial.</td><td>Ajusta automaticamente o estoque quando aplicável (RF20).</td></tr><tr><td class="col-attr"><code class="attr-name">DT_CANCELAMENTO</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/hora do cancelamento.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DS_MOTIVO</code></td><td>varchar(255)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Motivo do cancelamento ou devolução.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Responsável que autorizou o cancelamento.</td><td>Após fechamento de caixa, exige autorização de gerente/administrador (RN04).</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_CANCELAMENTO; índice em ID_VENDA.</p>
+</section>
+
+
+<section class="entity" id="caixa-movimentacao-caixa">
+  <div class="entity-head">
+    <span class="entity-num">5.17</span>
+    <h3>CAIXA e MOVIMENTACAO_CAIXA</h3>
+    
+  </div>
+  
+  <pre class="notation">CAIXA = @ID_CAIXA + ID_FUNCIONARIO_ABERTURA + DT_ABERTURA +
+(ID_FUNCIONARIO_FECHAMENTO) + (DT_FECHAMENTO) + VL_ABERTURA +
+(VL_TOTAL_SISTEMA) + (VL_TOTAL_INFORMADO) + (VL_DIFERENCA) +
+[TP_ABERTO | TP_FECHADO]
+
+MOVIMENTACAO_CAIXA = @ID_MOVIMENTACAO + ID_CAIXA + [TP_SANGRIA |
+TP_SUPRIMENTO] + VL_VALOR + DT_HORA + DS_MOTIVO + ID_FUNCIONARIO</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>Os campos de fechamento (ID_FUNCIONARIO_FECHAMENTO, DT_FECHAMENTO, VL_TOTAL_INFORMADO, VL_DIFERENCA) ficam entre parênteses porque só existem depois que o caixa é efetivamente fechado; enquanto TP_STATUS = ABERTO, permanecem nulos.</p></div>
+  <h4>CAIXA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_CAIXA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador da sessão de caixa.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO_ABERTURA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Funcionário que abriu o caixa.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_ABERTURA</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/hora de abertura.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO_FECHAMENTO</code></td><td>integer</td><td class="col-req"><span class="req-no">Não</span> <span class="badge badge-fk">FK</span></td><td>Funcionário que fechou o caixa.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_FECHAMENTO</code></td><td>datetime</td><td class="col-req"><span class="req-no">Não</span></td><td>Data/hora de fechamento.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">VL_ABERTURA</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor de fundo de troco na abertura.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">VL_TOTAL_SISTEMA</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-no">Não</span></td><td>Total esperado, calculado pelo sistema a partir das vendas do período.</td><td>Base da comparação de fechamento (RN07).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_TOTAL_INFORMADO</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-no">Não</span></td><td>Total informado pelo funcionário na conferência física.</td><td>Comparado ao valor do sistema (RN07).</td></tr><tr><td class="col-attr"><code class="attr-name">VL_DIFERENCA</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-no">Não</span></td><td>Diferença apurada entre o valor do sistema e o informado.</td><td>Resolve a divergência hoje apurada de forma verbal (RN07).</td></tr><tr><td class="col-attr"><code class="attr-name">TP_STATUS</code></td><td>varchar(10)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Status da sessão: ABERTO ou FECHADO.</td><td>RF16 — prioridade máxima do projeto.</td></tr>
+</tbody>
+</table></div>
+<h4>MOVIMENTACAO_CAIXA</h4><div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_MOVIMENTACAO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador da movimentação.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_CAIXA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Sessão de caixa à qual a movimentação pertence.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">TP_MOVIMENTACAO</code></td><td>varchar(12)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Tipo: SANGRIA (retirada) ou SUPRIMENTO (entrada).</td><td>RF17.</td></tr><tr><td class="col-attr"><code class="attr-name">VL_VALOR</code></td><td>decimal(10,2)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Valor da movimentação.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_HORA</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/hora da movimentação.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DS_MOTIVO</code></td><td>varchar(255)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Motivo da sangria ou suprimento.</td><td>RF17.</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Responsável pela movimentação.</td><td>—</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_CAIXA (CAIXA); PK ID_MOVIMENTACAO (MOVIMENTACAO_CAIXA); índice em ID_CAIXA (MOVIMENTACAO_CAIXA); índice em TP_STATUS (localizar caixa aberto).</p>
+</section>
+
+
+<section class="entity" id="log-auditoria">
+  <div class="entity-head">
+    <span class="entity-num">5.18</span>
+    <h3>LOG_AUDITORIA</h3>
+    
+  </div>
+  
+  <pre class="notation">LOG_AUDITORIA = @ID_LOG + ID_FUNCIONARIO + NM_TABELA +
+[TP_INSERIR | TP_ATUALIZAR | TP_APAGAR | TP_CONSULTAR] + DT_HORA
++ (DS_DETALHE)</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>NM_TABELA é um campo de texto livre, não uma chave estrangeira, porque um único log centralizado precisa referenciar qualquer entidade do sistema (produto, venda, caixa, cliente etc.) sem exigir uma tabela de log separada para cada uma — desenho mais simples e alinhado ao RF24 e à auditoria confirmada como necessária pela gestão (RNF13).</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_LOG</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador do registro de log.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_FUNCIONARIO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Usuário que realizou a ação.</td><td>RF24 e RNF13 — auditoria confirmada como necessária pela gestão.</td></tr><tr><td class="col-attr"><code class="attr-name">NM_TABELA</code></td><td>varchar(60)</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Nome da tabela/entidade afetada.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">TP_ACAO</code></td><td>varchar(15)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Tipo de ação: INSERIR, ATUALIZAR, APAGAR ou CONSULTAR.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_HORA</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/hora da ação.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DS_DETALHE</code></td><td>text</td><td class="col-req"><span class="req-no">Não</span></td><td>Detalhamento adicional da alteração (ex.: valores antes/depois).</td><td>—</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_LOG; índice em ID_FUNCIONARIO; índice em DT_HORA.</p>
+</section>
+
+
+<section class="entity entity-low" id="encomenda">
+  <div class="entity-head">
+    <span class="entity-num">5.19</span>
+    <h3>ENCOMENDA</h3>
+    <span class="pill pill-warning">Não confirmado em campo</span>
+  </div>
+  <p class='note-box'>A entidade a seguir corresponde a requisitos que não foram confirmados pela gestão na entrevista (RF14 e RF15). É mantida por completude e por ser comum ao segmento de padarias, mas não deve ser tratada como escopo validado nesta etapa.</p>
+  <pre class="notation">ENCOMENDA = @ID_ENCOMENDA + ID_CLIENTE + ID_PRODUTO +
+DT_RETIRADA_ENTREGA + [TP_PENDENTE | TP_CONFIRMADA | TP_ENTREGUE
+| TP_CANCELADA] + (DS_PERSONALIZACAO)</pre>
+  <div class="reading"><span class="reading-label">Leitura</span><p>DS_PERSONALIZACAO unifica em um único campo de texto livre as características de encomendas personalizadas (sabor, tamanho, recheio, tema — RF15), evitando criar atributos estruturados para um requisito ainda não validado com a gestão.</p></div>
+  <div class="table-wrap"><table>
+<thead><tr><th>Atributo</th><th>Tipo físico</th><th>Obrigatório</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead>
+<tbody>
+<tr><td class="col-attr"><code class="attr-name">ID_ENCOMENDA</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-pk">PK</span></td><td>Identificador da encomenda/pedido antecipado.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_CLIENTE</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Cliente que fez a encomenda.</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td><td>integer</td><td class="col-req"><span class="req-yes">Sim</span> <span class="badge badge-fk">FK</span></td><td>Produto encomendado (ex.: bolo, torta, kit de festa).</td><td>—</td></tr><tr><td class="col-attr"><code class="attr-name">DT_RETIRADA_ENTREGA</code></td><td>datetime</td><td class="col-req"><span class="req-yes">Sim</span></td><td>Data/horário previsto de retirada ou entrega.</td><td>Antecedência mínima definida pela padaria (RN05).</td></tr><tr><td class="col-attr"><code class="attr-name">TP_STATUS</code></td><td>varchar(12)</td><td class="col-req"><span class="req-yes">Sim</span> <span class="req-note">(escolha)</span></td><td>Status: PENDENTE, CONFIRMADA, ENTREGUE ou CANCELADA.</td><td>RF14.</td></tr><tr><td class="col-attr"><code class="attr-name">DS_PERSONALIZACAO</code></td><td>text</td><td class="col-req"><span class="req-no">Não</span></td><td>Observações de personalização (sabor, tamanho, recheio, tema etc.).</td><td>RF15.</td></tr>
+</tbody>
+</table></div>
+  <p class="indices"><strong>Índices:</strong> PK ID_ENCOMENDA; índice em ID_CLIENTE.</p>
+</section>
+
+    </section>
+
+    <section class="block" id="decisoes-escopo">
+      <span class="section-num">5.20</span>
+      <h2 class="section-title">Decisões de escopo desta etapa</h2>
+      <p class="section-intro">As decisões abaixo foram tomadas deliberadamente pelo grupo para manter o modelo conceitual proporcional ao porte da organização e ao momento do projeto. Ficam registradas para que a ausência das estruturas correspondentes não seja lida como uma lacuna não percebida, podendo ser revisitadas em iterações futuras do sistema.</p>
+      <div class="decision"><h4>a) Catálogo fornecedor × produto/insumo (RF11)</h4><p>O RF11 menciona "produtos fornecidos" como atributo do fornecedor. Optamos por não criar uma entidade associativa FORNECEDOR_PRODUTO/FORNECEDOR_MATERIA_PRIMA nesta etapa: o impacto em desempenho seria desprezível na escala da padaria (poucos fornecedores, poucos produtos), mas o custo de manutenção manual do catálogo (mantê-lo atualizado a cada mudança de portfólio de cada fornecedor) supera o ganho de usabilidade nesta fase — a necessidade prática de saber "quem já forneceu o quê" já é atendida pelo histórico em ITEM_COMPRA.</p></div><div class="decision"><h4>b) Ajuste manual de estoque e relatório de desperdício (RF05 parcial, RF21)</h4><p>O RF05 pede "registro de entradas/ajustes manuais autorizados" além da baixa automática por venda; o RF21 lista, como item desejável (não obrigatório), um relatório de desperdício. Hoje o modelo só movimenta QT_ESTOQUE via VENDA, PRODUCAO, COMPRA e CANCELAMENTO_DEVOLUCAO — não há uma entidade para registrar perdas, quebras ou correções manuais de contagem. Como o relatório de desperdício foi explicitamente despriorizado pela equipe (podendo inclusive ser removido do escopo futuramente), optamos por não modelar essa estrutura nesta entrega, para não introduzir uma entidade em torno de um requisito que pode nem sobreviver às próximas iterações. Caso a equipe decida futuramente reintroduzir esse controle, a extensão é pequena e reaproveita o mesmo padrão já usado em MOVIMENTACAO_CAIXA (produto/insumo, quantidade, motivo, responsável, data).</p></div>
+    </section>
+
+    <footer class="doc-footer">
+      <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados Conceitual (Preliminar)</div>
+      <div class="team">Integrantes: Caio Eduardo Hernandez, Davi Henrique Santos, Gustavo Reis, Isabela Calisto, Maria Eduarda Peres.</div>
+    </footer>
+  </main>
+</div>
+
+<script src="/Dicionario/script.js"></script>
+</body>
+</html>
