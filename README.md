@@ -239,7 +239,7 @@ As principais identificações de cada entidade são:
 
 * **DS\_:** descrição ou texto livre.
 
-
+ 
 Os principais atributos de cada entidade são:
 
 **CATEGORIA:** ID\_CATEGORIA, NM\_CATEGORIA.  
@@ -282,7 +282,7 @@ Os principais atributos de cada entidade são:
 
 **ENCOMENDA:** ID\_ENCOMENDA, ID\_CLIENTE, ID\_PRODUTO, DT\_RETIRADA\_ENTREGA, TP\_STATUS, DS\_PERSONALIZACAO.
 
-
+ 
 - **Relacionamentos pertinentes:** como as entidades se conectam.
 
 **CATEGORIA — PRODUTO:** uma categoria pode agrupar vários produtos, enquanto cada produto pertence a uma categoria (1:N).  
@@ -341,7 +341,7 @@ MATERIA\_PRIMA.
 **CLIENTE — ENCOMENDA:** um cliente pode realizar várias encomendas (1:N).  
 
 **PRODUTO — ENCOMENDA:** um produto pode estar associado a várias encomendas (1:N).
-
+ 
 
 - **Restrições e políticas organizacionais aplicadas ao modelo.**
 
