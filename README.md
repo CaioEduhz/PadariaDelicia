@@ -84,7 +84,7 @@ Dentre os principais processos da empresa, mapeamos aqueles que são mais releva
 
 **RF23** **— Pesquisa e filtros.** Busca de produtos, clientes, fornecedores, pedidos e vendas por nome, código, categoria, data, status etc. Cadastro de produtos e consulta de preço são as buscas mais frequentes e precisam ser rápidas.
 
-**RF24** **— Histórico de alterações.** Registro de usuário, ação, data/hora                      em operações importantes, para segurança e auditoria.
+**RF24** **— Histórico de alterações.** Registro de usuário, ação, data/hora em operações importantes, para segurança e auditoria.
 
 **RF25** **— Anexação de documentos e laudos regulatórios.** Permitir anexar PDF/imagem a produtos ou ao cadastro da empresa: ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento, código de defesa do consumidor.
 
@@ -171,7 +171,7 @@ Confira o [Dicionário de Dados](Dicionario/index.html)
 **6\. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)(marcado)**  
 \*(vale 7,5% na dimensão conceitual)\*
 
--  **Entidades reconhecidas:** liste e justifique brevemente cada uma.
+-  **Entidades reconhecidas:**
 
 **CATEGORIA**: utilizada para organizar os produtos em grupos, como pães, confeitaria, bebidas e salgados.  
 **PRODUTO:** representa os produtos acabados comercializados pela padaria, sejam de produção própria ou de revenda.  
@@ -292,7 +292,7 @@ O recorte do modelo foi guiado pela crise operacional levantada em campo control
 
 ***8.2 Por que essas entidades***
 
-PRODUTO e MATERIA\_PRIMA separados.A alternativa seria uma entidade única (ITEM) com um indicador de tipo,o que reduziria o número de tabelas.Optamos pela separação porque as duas coisas têm ciclos de vida e atributos incompatíveis: produto acabado tem preço de venda, categoria,validade exposta ao consumidor e é objeto de venda; insumo não é vendido,não tem preço de venda e só se movimenta por compra e produção.Unificá-las produziria uma entidade com metade dos atributos sempre nulos e exigiria regras de aplicação para impedir a venda de farinha, restrição que a separação resolve estruturalmente.
+PRODUTO e MATERIA\_PRIMA separados. A alternativa seria uma entidade única (ITEM) com um indicador de tipo,o que reduziria o número de tabelas.Optamos pela separação porque as duas coisas têm ciclos de vida e atributos incompatíveis: produto acabado tem preço de venda, categoria,validade exposta ao consumidor e é objeto de venda; insumo não é vendido,não tem preço de venda e só se movimenta por compra e produção.Unificá-las produziria uma entidade com metade dos atributos sempre nulos e exigiria regras de aplicação para impedir a venda de farinha, restrição que a separação resolve estruturalmente.
 
 CATEGORIA como entidade, não como atributo textual.Um campo texto em PRODUTO seria mais simples,mas o RF02 pede cadastro,edição,consulta e exclusão de categorias como operação própria,e o RF21/RF23 dependem de agrupamento consistente para relatórios e filtros.Texto livre permitiria "Pães", "pao" e "PÃES" convivendo na mesma base e inviabilizaria qualquer relatório por categoria.
 
@@ -353,7 +353,7 @@ Registramos duas limitações conhecidas do recorte atual. A validade está mode
 
 Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc.) em qualquer parte do trabalho, registre **para cada uso relevante**:
 
-**|------|------------------|**  
+|------|------------------|  
 **| \*\*Ferramenta e etapa\*\* |** Claude foi usado para a escritura da introdução. |  
 **| \*\*Motivação\*\* |** Para mapeamento de informações relevantes e para a revisão de dados faltantes. |  
 **| \*\*Prompt(s) utilizados\*\* |**   
@@ -394,7 +394,6 @@ A existência da organização pode ser comprovada pelo cadastro empresarial ati
 **| \*\*Reflexão crítica\*\* |** Não houveram vieses, foram fornecidos os materiais necessários para a atividade desejada. |
 
 |------|------------------|
-
 **| \*\*Ferramenta e etapa\*\* |** Claude foi usada para revisão de requisitos. |  
 **| \*\*Motivação\*\* |** Estava com uma grande quantidade de requisitos, o grupo pensou na possibilidade de existir algum que poderia ser excluído editado. |  
 **| \*\*Prompt(s) utilizados\*\*** | Complemente, adicione ou exclua os requisitos funcionais e não funcionais de acordo com tudo que te mandei e com o arquivo texto.txt. |  
@@ -402,9 +401,9 @@ A existência da organização pode ser comprovada pelo cadastro empresarial ati
 
 * **RN13 (Acesso por turno)** e **RN14 (Horário de funcionamento contínuo)** não são realmente regras de negócio no sentido de modelagem — são só repetições do que já está no RF21/RNF04 (acesso por turno) e no RNF02 e na Introdução (horário de funcionamento). Manter os dois só em Section 3 é mais limpo; aqui eles só ocupam espaço sem adicionar nada nas restrições organizacionais.  
 * A nota "(era RN11 na versão anterior)" é resíduo de edição, não é conteúdo do trabalho.  
-* A seção final "O que mudou em relação à lista original" também não corresponde a nenhuma seção pedida pelo professor — é só o changelog da nossa conversa. Vou tirar do arquivo.
+* A seção final "O que mudou em relação à lista original" também não corresponde a nenhuma seção pedida pelo professor — é só o changelog da conversa. 
 
-Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estatutárias (documentação regulatória e LGPD), que são exemplos muito mais fortes do que o professor pediu.
+Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estatutárias (documentação regulatória e LGPD), que são exemplos muito mais fortes.
 
 *Exato texto da seção 3: “Requisitos do Sistema”* |
 
@@ -415,12 +414,12 @@ Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estat
 
 |------|------------------|  
 **| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização do dicionário de dados |  
-**| \*\*Motivação\*\* |** Recorremos à essa IA pois o Claude tem proficiência com dados extensos e complexos, algo característico de um dicionário de dados |  
+**| \*\*Motivação\*\* |** Foi recorrido à essa IA pois o Claude tem proficiência com dados extensos e complexos, algo característico de um dicionário de dados |  
 **| \*\*Prompt(s) utilizados\*\* |** Desenvolva um dicionário de dados, se baseando nos conteúdos enviados nos documentos anexados (arquivos em PDF com os todos os requisitos e com o modelo de dicionário de dados a ser desenvolvido.) |  
 **| \*\*Resposta recebida\*\* |** Exato conteúdo no tópico 5 do presente documento. |  
 **| \*\*Fontes consultadas e verificadas\*\* |** Documentação de modelo de dicionário de dados enviada pelo professor e documentação com informações relevantes da empresa |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Retiramos o requisito de fidelidade por não fazer sentido com o cenário de uma padaria e tivemos que reformular o dicionário para que não incluísse o requisito que foi removido. Também reformulamos a formatação da resposta do Claude, solicitando que ele entregasse um arquivo HTML com as informações do dicionário. |  
-**| \*\*Justificativa da escolha final\*\* |** É coerente com a modelagem conceitual que desenvolvemos, além de coincidir com as informações nas outras etapas do trabalho, como o DER e os requisitos. |  
+**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi retirado o requisito de fidelidade por não fazer sentido com o cenário de uma padaria e foi reformulado o dicionário para que não incluísse o requisito removido. Também a formatação foi reformulada, solicitando que ele entregasse um arquivo HTML com as informações do dicionário. |  
+**| \*\*Justificativa da escolha final\*\* |** É coerente com a modelagem conceitual desenvolvida, além de coincidir com as informações nas outras etapas do trabalho, como o DER e os requisitos. |  
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
 |------|------------------|  
@@ -456,12 +455,11 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 **| \*\*Trechos rejeitados ou corrigidos\*\* |** Usado ChatGpt na tentativa de melhoria de resolução. |  
 **| \*\*Justificativa da escolha final\*\* |** É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |  
-—
 
 |------|------------------|
 **\*Ferramenta e etapa\*** Claude (Anthropic) foi usado na redação da Seção 8 (Justificativa Técnica), com base no modelo conceitual das seções 5 e 6.
 **\*Motivação\*** A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.
-**\*Prompt(s) utilizados\*** Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo `Entrega_1___Modelo_Conceitual__DER_.docx` completo.
+**\*Prompt(s) utilizados\*** Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.
 **\*Resposta recebida\*** Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos:
 
 \- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos.
