@@ -176,94 +176,172 @@ Confira o [Dicionário de Dados](Dicionario/index.html)
 
 -  **Entidades reconhecidas:**
 
-**CATEGORIA**: utilizada para organizar os produtos em grupos, como pães, confeitaria, bebidas e salgados.  
+**CATEGORIA**: utilizada para organizar os produtos em grupos, como pães, confeitaria, bebidas e salgados. 
+
 **PRODUTO:** representa os produtos acabados comercializados pela padaria, sejam de produção própria ou de revenda.  
+
 **MATERIA\_PRIMA:** representa os insumos utilizados na produção, como farinha, ovos e fermento, que possuem controle de estoque próprio.  
+
 **ITEM\_FICHA\_TECNICA:** entidade associativa que relaciona produtos e matérias-primas, registrando a quantidade de cada insumo necessária para produzir determinado produto.  
+
 **DOCUMENTO\_REGULATORIO:** armazena documentos e laudos regulatórios, podendo estar relacionado a um produto específico ou ao estabelecimento.  
+
 **FORNECEDOR:** representa as pessoas ou empresas responsáveis pelo fornecimento de produtos e matérias-primas.  
+
 **COMPRA:** registra as compras realizadas pela padaria junto aos fornecedores.  
+
 **ITEM\_COMPRA:** detalha os produtos de revenda ou matérias-primas presentes em cada compra.  
+
 **PRODUCAO:** registra os produtos produzidos, a quantidade produzida, a data e o funcionário responsável.  
+
 **CLIENTE:** armazena os dados básicos dos clientes e permite manter seu histórico de compras.  
+
 **FUNCIONARIO:** representa os sócios e funcionários que utilizam ou operam o sistema, incluindo informações de cargo, turno e acesso.  
+
 **COMANDA:** controla o consumo dos clientes durante o atendimento no salão, permitindo vincular os produtos consumidos ao cliente e ao funcionário responsável.  
+
 **ITEM\_COMANDA:** registra cada produto consumido dentro de uma comanda, incluindo quantidade e valor unitário.  
+
 **VENDA:** representa as vendas realizadas no balcão ou por delivery, incluindo informações de cliente, caixa, pagamento e valores.  
+
 **ITEM\_VENDA**: detalha os produtos, quantidades e valores que compõem cada venda.  
+
 **CANCELAMENTO\_DEVOLUCAO:** registra cancelamentos e devoluções relacionados às vendas, incluindo motivo, produto envolvido e funcionário responsável.  
+
 **CAIXA:** representa uma sessão de caixa, desde sua abertura até o fechamento e conferência dos valores.  
+
 **MOVIMENTACAO\_CAIXA:** registra movimentações financeiras realizadas durante uma sessão de caixa, como sangrias e suprimentos.  
+
 **LOG\_AUDITORIA:** registra ações relevantes realizadas pelos usuários do sistema, permitindo rastreabilidade e auditoria.  
+
 **ENCOMENDA:** representa pedidos antecipados ou personalizados. Essa entidade foi mantida no modelo por completude, porém possui baixa prioridade e não foi confirmada pela gestão durante a pesquisa de campo.
+
 
 -  **Atributos e classificações:** quais atributos pertencem a cada entidade.
 
 As principais identificações de cada entidade são:
 
 * **ID\_:** identificador da entidade, utilizado como chave primária ou chave estrangeira quando aplicável.  
+
 * **NM\_:** nome.  
+
 * **CD\_:** código ou informação de identificação.  
+
 * **DT\_:** data ou data e hora.  
+
 * **QT\_:** quantidade.  
+
 * **VL\_:** valor monetário.  
+
 * **TP\_:** tipo, categoria ou status.  
+
 * **IN\_:** indicador booleano.  
+
 * **DS\_:** descrição ou texto livre.
+
 
 Os principais atributos de cada entidade são:
 
 **CATEGORIA:** ID\_CATEGORIA, NM\_CATEGORIA.  
+
 **PRODUTO:** ID\_PRODUTO, CD\_PRODUTO, NM\_PRODUTO, DS\_PRODUTO, ID\_CATEGORIA, VL\_PRECO\_VENDA, VL\_CUSTO, CD\_UNIDADE, QT\_ESTOQUE, QT\_ESTOQUE\_MINIMO, DT\_VALIDADE, IN\_PRODUTO\_ESSENCIAL, IN\_ATIVO.  
+
 **MATÉRIA\_PRIMA:** ID\_MATERIA\_PRIMA, NM\_MATERIA\_PRIMA, CD\_UNIDADE, QT\_ESTOQUE, QT\_ESTOQUE\_MINIMO.  
+
 **ITEM\_FICHA\_TECNICA:** ID\_PRODUTO, ID\_MATERIA\_PRIMA, QT\_QUANTIDADE.  
+
 **DOCUMENTO\_REGULATORIO:** ID\_DOCUMENTO, TP\_DOCUMENTO, DS\_ARQUIVO, DT\_EMISSAO, DT\_VALIDADE, ID\_PRODUTO.  
+
 **FORNECEDOR:** ID\_FORNECEDOR, NM\_FORNECEDOR, CD\_CNPJ\_CPF, NM\_CONTATO, CD\_TELEFONE, DS\_ENDERECO.  
+
 **COMPRA:** ID\_COMPRA, ID\_FORNECEDOR, DT\_COMPRA, CD\_NOTA\_FISCAL, VL\_TOTAL.  
+
 **ITEM\_COMPRA:** ID\_COMPRA, ID\_ITEM, ID\_PRODUTO, ID\_MATERIA\_PRIMA, QT\_QUANTIDADE, VL\_UNITARIO.  
+
 **PRODUCAO**  ID\_PRODUCAO, ID\_PRODUTO, ID\_FUNCIONARIO, DT\_PRODUCAO, QT\_PRODUZIDA.  
+
 **CLIENTE:** ID\_CLIENTE, NM\_CLIENTE, CD\_TELEFONE, DT\_CADASTRO.  
+
 **FUNCIONARIO:** ID\_FUNCIONARIO, NM\_FUNCIONARIO, TP\_CARGO, TP\_TURNO, CD\_LOGIN, DS\_SENHA\_HASH, IN\_ATIVO.  
+
 **COMANDA:** ID\_COMANDA, ID\_CLIENTE, ID\_FUNCIONARIO, DT\_ABERTURA, DT\_FECHAMENTO, TP\_STATUS.  
+
 **ITEM\_COMANDA:** ID\_COMANDA, ID\_ITEM, ID\_PRODUTO, QT\_QUANTIDADE, VL\_UNITARIO.  
+
 **VENDA:** ID\_VENDA, DT\_VENDA, ID\_CAIXA, ID\_FUNCIONARIO, ID\_CLIENTE, ID\_COMANDA, TP\_CANAL, TP\_FORMA\_PAGAMENTO, VL\_TOTAL, VL\_DESCONTO, VL\_RECEBIDO, VL\_TROCO, TP\_STATUS.  
+
 **ITEM\_VENDA:** ID\_VENDA, ID\_ITEM, ID\_PRODUTO, QT\_QUANTIDADE, VL\_UNITARIO, VL\_DESCONTO\_ITEM.  
+
 **CANCELAMENTO\_DEVOLUCAO:** ID\_CANCELAMENTO, ID\_VENDA, ID\_PRODUTO, DT\_CANCELAMENTO, DS\_MOTIVO, ID\_FUNCIONARIO.  
+
 **CAIXA:** ID\_CAIXA, ID\_FUNCIONARIO\_ABERTURA, DT\_ABERTURA, ID\_FUNCIONARIO\_FECHAMENTO, DT\_FECHAMENTO, VL\_ABERTURA, VL\_TOTAL\_SISTEMA, VL\_TOTAL\_INFORMADO, VL\_DIFERENCA, TP\_STATUS.  
+
 **MOVIMENTACAO\_CAIXA:** ID\_MOVIMENTACAO, ID\_CAIXA, TP\_MOVIMENTACAO, VL\_VALOR, DT\_HORA, DS\_MOTIVO, ID\_FUNCIONARIO.  
+
 **LOG\_AUDITORIA:** ID\_LOG, ID\_FUNCIONARIO, NM\_TABELA, TP\_ACAO, DT\_HORA, DS\_DETALHE.  
+
 **ENCOMENDA:** ID\_ENCOMENDA, ID\_CLIENTE, ID\_PRODUTO, DT\_RETIRADA\_ENTREGA, TP\_STATUS, DS\_PERSONALIZACAO.
+
 
 - **Relacionamentos pertinentes:** como as entidades se conectam.
 
 **CATEGORIA — PRODUTO:** uma categoria pode agrupar vários produtos, enquanto cada produto pertence a uma categoria (1:N).  
+
 **PRODUTO — ITEM\_FICHA\_TECNICA:**\ um produto pode possuir vários itens em sua ficha técnica (1:N).  
-**MATERIA\_PRIMA \- ITEM\_FICHA\_TECNICA:** uma matéria-prima pode participar de várias fichas técnicas (1:N), formando um relacionamento N:M entre PRODUTO e MATERIA\_PRIMA.  
+
+**MATERIA\_PRIMA \- ITEM\_FICHA\_TECNICA:** uma matéria-prima pode participar de várias fichas técnicas (1:N), formando um relacionamento N:M entre PRODUTO e 
+MATERIA\_PRIMA.  
+
 **PRODUTO — PRODUCAO:** um produto pode possuir vários registros de produção ao longo do tempo (1:N).  
+
 **FUNCIONARIO — PRODUCAO:** um funcionário pode registrar várias produções .  
+
 **FORNECEDOR — COMPRA:** um fornecedor pode originar várias compras (1:N).  
+
 **COMPRA — ITEM\_COMPRA:** uma compra possui vários itens (1:N).  
+
 **PRODUTO — ITEM\_COMPRA:** um produto de revenda pode aparecer em vários itens de compra (1:N).  
+
 **MATERIA\_PRIMA — ITEM\_COMPRA:** uma matéria-prima pode aparecer em vários itens de compra (1:N).  
+
 **PRODUTO — DOCUMENTO\_REGULATORIO:** um produto pode possuir vários documentos regulatórios vinculados (1:N), sendo esse vínculo opcional.  
+
 **CLIENTE — COMANDA:** um cliente pode possuir várias comandas ao longo do tempo, sendo o vínculo opcional quando o cliente não é identificado (1:N).  
+
 **FUNCIONARIO — COMANDA:** um funcionário pode abrir ou atender várias comandas (1:N).  
+
 **COMANDA — ITEM\_COMANDA:** uma comanda possui vários itens consumidos (1:N).  
+
 **PRODUTO — ITEM\_COMANDA:** um produto pode aparecer em vários itens de diferentes comandas (1:N).  
+
 **FUNCIONARIO — CAIXA:** um funcionário pode abrir e, quando aplicável, fechar várias sessões de caixa (1:N).  
+
 **CAIXA — VENDA:** uma sessão de caixa pode conter várias vendas (1:N).  
+
 **FUNCIONARIO — VENDA:** um funcionário pode realizar várias vendas (1:N).  
+
 **CLIENTE — VENDA:** um cliente pode estar associado a várias vendas, sendo esse relacionamento opcional (1:N).  
+
 **COMANDA — VENDA:** uma comanda fechada pode originar no máximo uma venda de pagamento, sendo o relacionamento opcional (1:1).  
+
 **VENDA — ITEM\_VENDA:** uma venda possui um ou mais itens vendidos (1:N).  
+
 **PRODUTO — ITEM\_VENDA:** um produto pode aparecer em vários itens de venda (1:N).  
+
 **VENDA — CANCELAMENTO\_DEVOLUCAO:** uma venda pode possuir zero ou vários registros de cancelamento ou devolução (1:N).  
+
 **FUNCIONARIO — CANCELAMENTO\_DEVOLUCAO:** um funcionário pode ser responsável pela autorização de vários cancelamentos ou devoluções (1:N).  
+
 **CAIXA — MOVIMENTACAO\_CAIXA:** uma sessão de caixa pode possuir várias movimentações financeiras (1:N).  
+
 **FUNCIONARIO — MOVIMENTACAO\_CAIXA:** um funcionário pode ser responsável por várias movimentações de caixa (1:N).  
+
 **FUNCIONARIO — LOG\_AUDITORIA:** um funcionário pode gerar vários registros de auditoria (1:N).  
+
 **CLIENTE — ENCOMENDA:** um cliente pode realizar várias encomendas (1:N).  
+
 **PRODUTO — ENCOMENDA:** um produto pode estar associado a várias encomendas (1:N).
+
 
 - **Restrições e políticas organizacionais aplicadas ao modelo.**
 
