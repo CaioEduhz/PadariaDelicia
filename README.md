@@ -3,7 +3,7 @@ Entrega 1 — Modelo Conceitual (DER)
 
 **Integrantes do grupo:**   
 Caio Eduardo Hernandez		47791934  
-Davi Henrique Santos		47434899  
+Davi Henrique Santos	Nascimento	47434899  
 Gustavo Reis		47455152  
 Isabela Calisto Oliveira		47645695  
 Maria Eduarda Peres		47644451
