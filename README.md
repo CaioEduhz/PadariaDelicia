@@ -8,7 +8,7 @@ Gustavo Reis			47455152
 Isabela Calisto Oliveira		47645695  
 Maria Eduarda Peres		47644451
 
-**1\. Caracterização da Organização**  
+**## 1. Caracterização da Organização**  
 
 A *Padaria Délicia II Ltda.*, nome fantasia *Padaria Délicia II*, é uma microempresa com fins lucrativos localizada na Rua Impata, nº 765, Vila Ré, São Paulo-SP, CEP 03663-010. Inscrita no CNPJ 13.565.217/0001-90, iniciou suas atividades em 19 de abril de 2011 e encontra-se com situação cadastral ativa. Sua atividade principal é o **comércio varejista de produtos de padaria e confeitaria, com predominância de revenda, enquanto sua atividade secundária compreende a fabricação de produtos de padaria e confeitaria com predominância de produção própria.**
 
@@ -24,14 +24,17 @@ Além disso, há também um registro anexado abaixo da reunião de levantamento 
 
 [Print de reunião com um dos donos da padaria](img/Reuniao.jpg)
 
-**2\. Processos de Negócio**  
+---
+
+**## 2. Processos de Negócio**  
 
 Dentre os principais processos da empresa, mapeamos aqueles que são mais relevantes para o desenvolvimento de um sistema efetivo: **Cadastro e controle de cliente** (hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar.); **Controle de caixa** (fechamento e conferência de caixa dependem quase inteiramente de controle verbal, com uso pontual de fichas de papel.); **Controle de estoque** (movimentação de produtos é registrada de forma totalmente manual, sem sistema de apoio.); **Produção e compras (fluxo de mercadoria)** (entrada de insumos, produção diária e disponibilização dos produtos para venda.); e **Vendas, atendimento e entregas:** (atendimento no balcão e pedidos por delivery (cerca de 50 por dia), com integração escalável ao WhatsApp.)
 
 [Fluxo de Processos](img/Fluxograma.png)
 
+---
 
-**3\. Requisitos do Sistema**  
+**## 3. Requisitos do Sistema**  
 
 ***3.1 Requisitos Funcionais***
 
@@ -129,7 +132,9 @@ Dentre os principais processos da empresa, mapeamos aqueles que são mais releva
 
 **RNF19 — Implantação híbrida.** Operação combinando processamento/armazenamento local e sincronização em nuvem, conforme preferência da gestão.
 
-**4\. Regras de Negócio**
+---
+
+**## 4. Regras de Negócio**
 
 ***4.1 Regras operacionais***  
 *Condições que a organização impõe sobre suas transações do dia a dia.*
@@ -159,12 +164,15 @@ Dentre os principais processos da empresa, mapeamos aqueles que são mais releva
 
 **RN11 — Proteção de dados pessoais (LGPD).** Restrição legal: dados de clientes (nome, telefone) são dados pessoais por definição da LGPD, mesmo que a gestão não os perceba como sensíveis. Importa porque o modelo de dados de clientes precisa prever controle de acesso e finalidade de uso desses campos, sob risco de sanção legal.
 
-**5\. Dicionário de Dados Conceitual (Preliminar)**  
+---
+
+**## 5. Dicionário de Dados Conceitual (Preliminar)**  
 
 Confira o [Dicionário de Dados](Dicionario/index.html)
 
+---
 
-**6\. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)(marcado)**  
+**## 6. Modelagem Conceitual (Entidades, Atributos, Relacionamentos)**  
 
 -  **Entidades reconhecidas:**
 
@@ -273,11 +281,15 @@ Os principais atributos de cada entidade são:
 **Controle de acesso:** as operações disponíveis devem respeitar o perfil e o turno do funcionário.  
 **Auditoria:** operações relevantes devem gerar registros no LOG\_AUDITORIA, permitindo identificar o usuário, a ação realizada e o momento da operação.
 
-**7\. Diagrama Entidade-Relacionamento (DER)**  
+---
+
+**## 7. Diagrama Entidade-Relacionamento (DER)**  
 
 O Diagrama Entidade-Relacionamento (DER) foi anexado junto ao repositório, confira [***aqui***](DER.jpeg).
 
-**8\. Justificativa Técnica**  
+---
+
+**## 8. Justificativa Técnica**  
 
 ***8.1 Critério geral de abstração***
 
@@ -340,6 +352,8 @@ Algumas estruturas usuais em sistemas de varejo foram conscientemente não model
 ***8.6 Limitações assumidas***
 
 Registramos duas limitações conhecidas do recorte atual. A validade está modelada como atributo de PRODUTO (DT\_VALIDADE), o que pressupõe uma validade vigente por produto e não permite rastrear lotes distintos do mesmo item suficiente para o bloqueio exigido pela RN01 no contexto de uma padaria com giro diário, mas insuficiente caso a empresa passe a trabalhar com estoques de validade longa. E a baixa de matéria-prima pela produção usa a quantidade prevista na ficha técnica, não a quantidade efetivamente consumida, o que não captura perdas de produção decisão coerente com a despriorização do relatório de desperdício pela gestão, e revisitável na mesma estrutura já usada em MOVIMENTACAO\_CAIXA.
+
+---
 
 **## 9. Uso de Inteligência Artificial**  
 
