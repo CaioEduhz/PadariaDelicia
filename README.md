@@ -214,10 +214,10 @@ Confira o [Dicionário de Dados](Dicionario/index.html)
 
 **LOG\_AUDITORIA:** registra ações relevantes realizadas pelos usuários do sistema, permitindo rastreabilidade e auditoria.  
 
-**ENCOMENDA:** representa pedidos antecipados ou personalizados. Essa entidade foi mantida no modelo por completude, porém possui baixa prioridade e não foi confirmada pela gestão durante a pesquisa de campo.
+**ENCOMENDA:** representa pedidos antecipados ou personalizados. Essa entidade foi mantida no modelo por completude, porém possui baixa prioridade e não foi confirmada pela gestão durante a pesquisa de campo.  
 
 
--  **Atributos e classificações:** quais atributos pertencem a cada entidade.
+-  **Atributos e classificações:** quais atributos pertencem a cada entidade.  
 
 As principais identificações de cada entidade são:
 
@@ -237,7 +237,7 @@ As principais identificações de cada entidade são:
 
 * **IN\_:** indicador booleano.  
 
-* **DS\_:** descrição ou texto livre.
+* **DS\_:** descrição ou texto livre.  
 
  
 Os principais atributos de cada entidade são:
@@ -280,7 +280,7 @@ Os principais atributos de cada entidade são:
 
 **LOG\_AUDITORIA:** ID\_LOG, ID\_FUNCIONARIO, NM\_TABELA, TP\_ACAO, DT\_HORA, DS\_DETALHE.  
 
-**ENCOMENDA:** ID\_ENCOMENDA, ID\_CLIENTE, ID\_PRODUTO, DT\_RETIRADA\_ENTREGA, TP\_STATUS, DS\_PERSONALIZACAO.
+**ENCOMENDA:** ID\_ENCOMENDA, ID\_CLIENTE, ID\_PRODUTO, DT\_RETIRADA\_ENTREGA, TP\_STATUS, DS\_PERSONALIZACAO.   
 
  
 - **Relacionamentos pertinentes:** como as entidades se conectam.
@@ -340,7 +340,7 @@ MATERIA\_PRIMA.
 
 **CLIENTE — ENCOMENDA:** um cliente pode realizar várias encomendas (1:N).  
 
-**PRODUTO — ENCOMENDA:** um produto pode estar associado a várias encomendas (1:N).
+**PRODUTO — ENCOMENDA:** um produto pode estar associado a várias encomendas (1:N).  
  
 
 - **Restrições e políticas organizacionais aplicadas ao modelo.**
