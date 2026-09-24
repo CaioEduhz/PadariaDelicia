@@ -281,7 +281,7 @@ Os principais atributos de cada entidade são:
 **7\. Diagrama Entidade-Relacionamento (DER)**  
 \*(vale 20% — é o item de maior peso da entrega)\*
 
-O Diagrama Entidade-Relacionamento (DER) foi anexado junto ao repositório, confira ***aqui***.
+O Diagrama Entidade-Relacionamento (DER) foi anexado junto ao repositório, confira [***aqui***](DER.jpeg).
 
 **8\. Justificativa Técnica**  
 \*(vale 7,5% — sozinho, é o subcritério de maior peso dentro da Dimensão Conceitual)\*
@@ -438,6 +438,16 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
 |------|------------------|  
+**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização do Diagrama de Entidade e Relacionamento (DER). |  
+**| \*\*Motivação\*\* |** Dados extensos, demandando muito tempo para implementação.  |  
+**| \*\*Prompt(s) utilizados\*\* |** Claude, poderia desenvolver um diagrama de entidade e relacionamento (DER) de acordo com o formato BrModelo (exemplo na imagem em anexo) e com as informações do documento(pdf em anexo)? |  
+**| \*\*Resposta recebida\*\* |** Imagem do tópico 7 do presente documento. |  
+**| \*\*Fontes consultadas e verificadas\*\* |** Dicionário de dados e imagem exemplo do desejado.  |  
+**| \*\*Trechos rejeitados ou corrigidos\*\* |** Nada alterado, tudo de acordo com o pedido. |  
+**| \*\*Justificativa da escolha final\*\* |** Coerente com a modelagem conceitual que foi desenvolvido e com o material fornecido. |  
+**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
+
+|------|------------------|  
 **| \*\*Ferramenta e etapa\*\* |** MyMapAi foi usado para fluxograma. |  
 **| \*\*Motivação\*\* |** Construir visual em BPMN. |  
 **| \*\*Prompt(s) utilizados\*\* |** Com base na entrevista e todos os dados e processos fornecidos, poderia criar um visual em BPMN? |  
@@ -448,32 +458,25 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |  
 —
 
-**\*Ferramenta e etapa\*** Claude (Anthropic) foi utilizado na redação da Seção 8 Justificativa Técnica,a partir do modelo conceitual já construído pelo grupo nas seções 5 e 6\.
+|------|------------------|
+**\*Ferramenta e etapa\*** Claude (Anthropic) foi usado na redação da Seção 8 (Justificativa Técnica), com base no modelo conceitual das seções 5 e 6.
+**\*Motivação\*** A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.
+**\*Prompt(s) utilizados\*** Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo `Entrega_1___Modelo_Conceitual__DER_.docx` completo.
+**\*Resposta recebida\*** Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos:
 
-**\*Motivação\***  A Seção 8 exige que cada decisão de modelagem seja defendida contra alternativas possíveis. O grupo já havia tomado essas decisões durante a construção do dicionário de dados e do DER, mas grande parte da argumentação estava implícita nas discussões internas e não registrada por escrito.Recorremos à IA para explicitar e organizar esse raciocínio em texto contínuo, garantindo que cada entidade,atributo e cardinalidade fosse justificada em relação à alternativa descartada, e não apenas descrita. 
+\- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos.
 
-**\*Prompt(s) utilizados\*** "Faça a seguinte justificativa abaixo levando em consideração o arquivo anexado com base em modelo conceitual da modelagem de um banco de dados de uma organização... 8\. Justificativa Técnica Explique e defenda as decisões de abstração e modelagem tomadas: por que essas entidades, esses atributos, esses relacionamentos e essas cardinalidades e não outras alternativas possíveis?" (acompanhado do arquivo \`Entrega\_1\_\_\_Modelo\_Conceitual\_\_DER\_.docx\` completo)
+\- COMANDA separada de VENDA, para não contaminar o faturamento.
 
-**\*Resposta recebida\*** A IA produziu uma justificativa estruturada em seis blocos: critério geral de abstração, justificativa das entidades, dos atributos,das cardinalidades,proporcionalidade ao porte da organização e limitações assumidas.Em cada ponto,a resposta apresentou a alternativa descartada antes de defender a escolha do grupo.Trechos representativos do que foi retornado:
+\- Participação parcial de CLIENTE em VENDA, por viabilidade operacional.
 
-\- Sobre a separação entre PRODUTO e MATERIA\_PRIMA: a alternativa de uma entidade única com indicador de tipo produziria uma entidade com metade dos atributos sempre nulos e exigiria regra de aplicação para impedir a venda de insumos, restrição que a separação resolve estruturalmente.
+\- VL\_UNITARIO no item, para preservar o preço histórico.
 
-\- Sobre COMANDA × VENDA: representar o atendimento como uma venda em status "aberta" economizaria duas entidades, mas contaminaria o faturamento e o fechamento de caixa com registros que ainda não são receita, além de tornar a RN08 inexprimível. A duplicação entre ITEM\_COMANDA e ITEM\_VENDA é intencional — um registra o que foi consumido, o outro o que foi cobrado, e a diferença entre ambos é exatamente a informação que a padaria hoje não consegue apurar.
+\- Atributos derivados como desnormalização controlada (RNF01).
 
-\- Sobre a participação parcial em CLIENTE — VENDA: exigir identificação obrigatória em cerca de 200 atendimentos diários tornaria o sistema mais lento que o balcão atual e levaria a equipe a contorná-lo; a cardinalidade mínima zero é decisão de viabilidade operacional.
+Uma segunda resposta condensou o texto à metade.
 
-\- Sobre VL\_UNITARIO nos itens: manter o preço no item preserva o valor praticado no momento da transação,evitando que reajustes reescrevam retroativamente o faturamento histórico.
-
-\- Sobre atributos derivados (QT\_ESTOQUE, VL\_TOTAL, VL\_DIFERENCA): caracterizados como desnormalização controlada, justificada pelo RNF01, com o custo reconhecido de exigir consistência transacional (RNF05, RNF15).
-
-A segunda resposta condensou o mesmo conteúdo, preservando os confrontos com as alternativas e reduzindo a extensão aproximadamente à metade. 
-
- **\*Fontes consultadas e verificadas\***  A IA não citou fontes externas. Todo o conteúdo foi derivado do próprio documento fornecido pelo grupo (seções 1 a 6), do levantamento de campo realizado com o gerente e dos requisitos e regras de negócio já definidos.O grupo verificou a correspondência de cada justificativa com o dicionário de dados da seção 5 e com o DER da seção 7, conferindo especialmente os números citados (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades) contra os dados da entrevista. 
-
- **\*Trechos rejeitados ou corrigidos\***  O grupo revisou as afirmações que atribuíam intenção às decisões: em alguns pontos a IA apresentou como deliberada uma escolha que, na prática, havia sido tomada por conveniência durante a modelagem esses trechos foram conferidos e mantidos apenas quando a justificativa de fato correspondia ao raciocínio do grupo. As limitações da seção 8.6 (validade por produto sem controle de lote e baixa de insumo pela quantidade prevista na ficha técnica) foram validadas pelo grupo antes de serem mantidas, por representarem reconhecimento de fragilidade do próprio modelo. 
-
- **\*Justificativa da escolha final\***  Foi mantida a versão atual, por ser proporcional ao peso da seção na entrega e por preservar o essencial: a comparação explícita com alternativas descartadas, que é o que o critério avaliativo exige.A IA foi utilizada como ferramenta de organização e redação de um raciocínio que já existia no grupo todas as decisões de modelagem justificadas no texto foram tomadas pelos integrantes ao longo da construção do dicionário de dados e do DER, e não sugeridas pela IA. 
-
-**\*Reflexão crítica\*** O principal limite identificado foi a tendência da IA a racionalizar toda decisão como intencional e bem fundamentada, inclusive aquelas que no processo real foram intuitivas. Isso produz um texto convincente, mas que pode não corresponder ao histórico efetivo das escolhas razão pela qual o grupo revisou cada justificativa perguntando se era de fato o motivo da decisão,e não apenas um motivo plausível. Também se observou que a qualidade da resposta dependeu inteiramente do material fornecido: como o documento anexado já continha o modelo completo, não houve alucinação de entidades, atributos ou regras inexistentes. Não foram identificados vieses ou generalizações incorretas sobre o segmento de padarias.  
-
-
+**\*Fontes consultadas e verificadas\*** Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).
+**\*Trechos rejeitados ou corrigidos\*** Foram mantidas apenas as justificativas que correspondiam ao raciocínio real do grupo, pois a IA às vezes tratava como deliberadas escolhas feitas por conveniência. As limitações da seção 8.6 foram validadas pelo grupo.
+**\*Justificativa da escolha final\*** Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.
+**\*Reflexão crítica\*** A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.
